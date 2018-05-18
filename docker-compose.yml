@@ -1,0 +1,23 @@
+version: "2"
+services:
+  apigility:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    environment:
+      XDEBUG_CONFIG: remote_host={{10.151.160.19}}
+    ports:
+     - "81:80"
+    volumes:
+     - .:/var/www
+    depends_on:
+      - "db"
+  db:
+    image: mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: apigility
+      MYSQL_USER: apigility
+      MYSQL_PASSWORD: apigility
+
